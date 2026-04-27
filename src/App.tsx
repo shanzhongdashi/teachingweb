@@ -88,9 +88,9 @@ const quickModules = [
 ] as const
 
 const VIDEO_BACKGROUNDS = [
-  'public/image/lunbo1.png',
-  'public/image/lunbo2.png',
-  'public/image/lunbo3.png',
+  '/image/lunbo1.png',
+  '/image/lunbo2.png',
+  '/image/lunbo3.png',
 ]
 
 const videoMap: Record<number, string> = {
@@ -637,7 +637,7 @@ function App() {
         avatarUrl: reloaded.avatarUrl || nextProfile.avatarUrl,
         nickname: reloaded.nickname || nextProfile.nickname,
         phone: reloaded.phone,
-        password: reloaded.password || nextProfile.password,
+        password: reloaded.password || nextProfile.password || current.password || '',
         loading: false,
         saving: false,
         message: '已保存并同步到腾讯云数据库',
@@ -860,8 +860,9 @@ function App() {
         likeCount: post.likeCount ?? 0,
       })))
       await syncUserStats({ postCount: myPosts.length + 1 })
-      setCommunitySelectedPostId(result.id)
-      setCommunityReplies((current) => ({ ...current, [result.id]: [] }))
+      const newPostId = result.id ?? ''
+      setCommunitySelectedPostId(newPostId)
+      setCommunityReplies((current) => ({ ...current, [newPostId as string]: [] }))
       setCommunityQuestionTitle('')
       setCommunityQuestionContent('')
       setCommunityMessage('问题已发布，已同步到云数据库')
