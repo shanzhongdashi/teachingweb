@@ -237,13 +237,6 @@ function App() {
   ])
   const [aiError, setAiError] = useState('')
   const aiChatListRef = useRef<HTMLDivElement | null>(null)
-  const aiSessionId = useMemo(() => {
-    const randomPart = typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-      ? crypto.randomUUID().replace(/-/g, '').slice(0, 12)
-      : 'session'
-
-    return `teachingweb-${randomPart}`
-  }, [])
 
   const profileDimensions: { key: ProfileDimensionKey; label: string; courseCategory: Exclude<CourseCategory, 'all'> }[] = [
     { key: 'education', label: '教育认知', courseCategory: '理念唤醒篇' },
