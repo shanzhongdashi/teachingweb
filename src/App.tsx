@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import type React from 'react'
 import './App.css'
 import { cloudbaseCollectionName, cloudbaseReady, verifyUser, getUserProfile, saveUserProfile, updateUserLearningStats, uploadAvatar, listCommunityPosts, listCommunityReplies, createCommunityPost, createCommunityReply, acceptCommunityReply, listCourseFavorites, addCourseFavorite, removeCourseFavorite } from './lib/cloudbase.ts'
