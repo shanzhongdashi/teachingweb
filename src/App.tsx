@@ -562,12 +562,12 @@ function App() {
     setAiError('')
 
     try {
-      const response = await fetch('/api/coze/chat', {
-        method: 'POST',
+      const response = await fetch('/api/coze-proxy', {
+       method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ text, sessionId: aiSessionId, userId: accountUserId }),
+        body: JSON.stringify({ text, userId: accountUserId }),
       })
 
       const data = await response.json().catch(() => null)
