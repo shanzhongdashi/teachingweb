@@ -1,7 +1,9 @@
 [build]
   command = "npm run build"
   publish = "dist"
+  functions = "netlify/functions"           # 指定函数存放目录
 
+# 解决之前的 MIME 类型问题
 [[headers]]
   for = "/assets/*.js"
   [headers.values]
@@ -11,3 +13,9 @@
   for = "/assets/*.css"
   [headers.values]
     Content-Type = "text/css"
+
+# 让前端可以用 /api/coze-proxy 调用我们的函数
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
